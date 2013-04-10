@@ -12,11 +12,6 @@
 #include <nttools/NetworkTableTools.h>
 
 int main() {
-/*	DefaultThreadManager threadManager;
-	NetworkTableNode* clientNode=NetworkTableMode::Client.CreateNode("127.0.0.1",1735,threadManager);
-	sleep(1);
-	NetworkTableProvider provider(*clientNode);
-	ITable* table=provider.GetTable("/table1");*/
 	ITable* table=NetworkTableTools::GetClientTable("127.0.0.1","table1");
 	if(table==NULL) {
 		std::cerr<<"Table NULL"<<std::endl;

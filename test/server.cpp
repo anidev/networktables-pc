@@ -7,9 +7,6 @@
 #include <nttools/NetworkTableTools.h>
 
 int main() {
-/*	NetworkTable::SetIPAddress("127.0.0.1");
-	NetworkTable::Initialize();
-	NetworkTable* table=NetworkTable::GetTable("table1");*/
 	ITable* table=NetworkTableTools::GetServerTable("127.0.0.1","table1");
 	if(table==NULL) {
 		std::cerr<<"Table NULL"<<std::endl;
