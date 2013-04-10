@@ -1,4 +1,5 @@
 #ifndef NETWORKTABLETOOLS_H
+#define NETWORKTABLETOOLS_H
 
 #include <string>
 #include <tables/ITable.h>
