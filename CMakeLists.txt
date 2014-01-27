@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.8)
 project(networktables-pc)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++11 -Wall -Werror -pedantic -pthread -fPIC")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -Werror -pthread -lrt -fPIC")
 file(GLOB_RECURSE SOURCES1 ${PROJECT_SOURCE_DIR}/networktables/*.cpp)
 file(GLOB_RECURSE SOURCES2 ${PROJECT_SOURCE_DIR}/networktables2/*.cpp)
 file(GLOB_RECURSE SOURCES3 ${PROJECT_SOURCE_DIR}/tables/*.cpp)
