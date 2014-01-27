@@ -20,9 +20,7 @@ private:
 	static void InitServer(std::string address);
 	static void InitClient(std::string address);
 	static bool serverInited;
-	static NTThreadManager* clientThreadManager;
-	static NetworkTableNode* clientNode;
-	static NetworkTableProvider* clientProvider;
+	static bool clientInited;
 };
 
 #endif // NETWORKTABLETOOLS_H

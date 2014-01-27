@@ -10,9 +10,7 @@
 #include <networktables2/thread/NTThreadManager.h>
 
 bool NetworkTableTools::serverInited=false;
-NTThreadManager* NetworkTableTools::clientThreadManager=NULL;
-NetworkTableNode* NetworkTableTools::clientNode=NULL;
-NetworkTableProvider* NetworkTableTools::clientProvider=NULL;
+bool NetworkTableTools::clientInited=false;
 
 std::string NetworkTableTools::GetTeamIP(int team) {
 	char tmp[30];
@@ -35,10 +33,7 @@ ITable* NetworkTableTools::GetClientTable(int team,std::string key) {
 
 ITable* NetworkTableTools::GetClientTable(std::string address,std::string key) {
 	InitClient(address);
-	if(clientProvider==NULL) {
-		return NULL;
-	}
-	return clientProvider->GetTable("/"+key);
+	return NetworkTable::GetTable(key);
 }
 
 void NetworkTableTools::InitServer(std::string address) {
@@ -51,10 +46,11 @@ void NetworkTableTools::InitServer(std::string address) {
 }
 
 void NetworkTableTools::InitClient(std::string address) {
-	if(clientProvider!=NULL) {
+	if(clientInited) {
 		return;
 	}
-	clientThreadManager=new DefaultThreadManager();
-	NetworkTableNode* clientNode=NetworkTableMode::Client.CreateNode("127.0.0.1",1735,*clientThreadManager);
-	clientProvider=new NetworkTableProvider(*clientNode);
+	NetworkTable::SetIPAddress(address.c_str());
+	NetworkTable::SetClientMode();
+	NetworkTable::Initialize();
+	clientInited=true;
 }
